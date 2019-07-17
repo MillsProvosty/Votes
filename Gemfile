@@ -7,7 +7,6 @@ source 'https://rubygems.org'
   gem 'rake'
   gem 'require_all'
   gem 'shotgun'
-  gem 'rspec'
   gem 'pry'
   gem 'json'
   gem 'simplecov'
@@ -16,3 +15,8 @@ source 'https://rubygems.org'
   gem 'sequel'
   gem 'mongoid'
   gem 'sqlite3'
+
+  group :test do
+    gem 'rack-test'
+    gem 'rspec'
+  end
