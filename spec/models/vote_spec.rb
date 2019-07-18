@@ -1,4 +1,4 @@
-require './spec/rails_helper'
+require './spec/spec_helper'
 require './app/models/vote'
 require './app/models/application_record'
 
