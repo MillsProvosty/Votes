@@ -1,14 +1,13 @@
 require 'bundler'
 Bundler.require
 
-SINATRA_ACTIVESUPPORT_WARNING=false
 APP_ROOT = File.expand_path("..",__dir__)
 
 # require the controller(s)
 Dir.glob(File.join(APP_ROOT, 'app', 'controllers', '*.rb')).each { |file| require file }
 
 # require the model(s)
-Dir.glob(File.join(APP_ROOT, 'app', 'models', '*.rb')).each { |file| require file }
+Dir.glob(File.join(APP_ROOT, 'app', 'models', 'vote.rb')).each { |file| require file }
 
 #requires serializers
 Dir.glob(File.join(APP_ROOT, 'app', 'serializers', '*.rb')).each { |file| require file }
