@@ -10,11 +10,11 @@ source 'https://rubygems.org'
   gem 'factory_bot_rails'
   gem 'figaro'
 
-  group :test do
+  group :development, :test do
     gem 'shotgun'
     gem 'pry'
     gem 'simplecov'
-    gem 'shoulda-matchers', '~> 2.0'
+    gem 'shoulda-matchers'
     gem 'rack-test'
     gem 'rspec'
     gem 'capybara'
