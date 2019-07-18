@@ -1,9 +1,9 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-require './config/environments' #database configuration
-require './models/model'        #Model class
+require './config/environment' #database configuration
+# require './models/model'        #Model class
 
 
 get '/' do
-  
+
 end
