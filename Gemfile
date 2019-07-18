@@ -15,6 +15,7 @@ source 'https://rubygems.org'
   gem 'sequel'
   gem 'mongoid'
   gem 'sqlite3'
+  gem 'factory_bot_rails'
 
   group :test do
     gem 'rack-test'
