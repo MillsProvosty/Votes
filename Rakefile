@@ -1,5 +1,5 @@
 require 'bundler'
 Bundler.require
 
-require './config/enviroment'
+require './config/environment'
 require 'sinatra/activerecord/rake'

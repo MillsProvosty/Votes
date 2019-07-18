@@ -1,4 +1,6 @@
-class RecordingsController < ApplicationController
+class VotesApp < Sinatra::Base
+  set :root, File.expand_path("..",__dir__)
+  
   get '/api/v1/recording/:id/recording_rating' do
     content_type :json
    { :key1 => 'value1', :key2 => 'value2' }.to_json
