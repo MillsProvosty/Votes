@@ -1,31 +1,37 @@
-require 'rack/test'
-require 'rspec'
-require './config/environment'
-SimpleCov.start
-
 ENV['RACK_ENV'] = 'test'
+require 'bundler'
+Bundler.require(:default, :test)
+require File.expand_path('../../config/environment.rb', __FILE__)
+require 'capybara/dsl'
 
+Capybara.app = SurveysApp
+Capybara.save_path = 'tmp/capybara'
 
-def app
-  Sinatra::Application
-end
-
-FactoryBot.definition_file_paths = %w{./factories ./test/factories ./spec/factories}
-FactoryBot.find_definitions
-
-RSpec.configure do |config|
- config.include Rack::Test::Methods
-end
+DatabaseCleaner.strategy = :truncation
 
 module RSpecMixin
   include Rack::Test::Methods
-  def app() VotesApp end 
+  def app() VotesApp end
 end
 
-# Capybara.app = VotesApp
-# Capybara.save_path = 'tmp/capybara'
-
 RSpec.configure do |c|
-  # c.include Capybara::DSL
+  c.include Capybara::DSL
+
+  c.before(:all) do
+    DatabaseCleaner.clean
+  end
+  c.after(:each) do
+    DatabaseCleaner.clean
+  end
+
   c.include RSpecMixin
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+
+    with.library :active_record
+    with.library :active_model
+  end
 end
