@@ -2,9 +2,9 @@ require "./spec/spec_helper"
 # require "./app/controllers/application_controller"
 
 describe "Vote Requests" do
-  it "Gets ratings for a specific location" do
+  it "Gets a specific recording by id" do
 
-    get '/api/v1/recording/:id/recording_rating'
+    get '/api/v1/recording/:id/'
 
     expect(last_response).to be_ok
 
