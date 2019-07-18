@@ -5,5 +5,5 @@ require './config/environment' #database configuration
 
 
 get '/' do
-
+  "Hello"
 end
