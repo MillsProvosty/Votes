@@ -1,13 +1,14 @@
 require "./spec/rails_helper"
+require "./app/controllers/application_controller"
 
 describe "Vote Requests" do
-  describe "Gets ratings for a specific location" do
+  it "Gets ratings for a specific location" do
 
     get '/api/v1/Recording/1/recording_rating'
 
-    expect(response).to be_successful
+    expect(last_response).to be_successful
 
-    ratings = JSON.parse(response.body)
+    ratings = JSON.parse(last_response.body)
 
     expect(ratings).to eq("something")
   end

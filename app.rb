@@ -5,5 +5,5 @@ require './models/model'        #Model class
 
 
 get '/' do
-    "Hello, World!"
+  
 end
