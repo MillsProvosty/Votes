@@ -3,7 +3,7 @@ class VotesApp < Sinatra::Base
 
   get '/api/v1/recordings/:id/score' do
     # recording = VoteSerializer.new(Vote.score_for_recording_id(params[:id]))
-    recording = Vote.score_for_recording_id(params[:id])
-    recording.to_json
+    scores = Vote.score_for_recording_id(params[:id])
+    VoteSerializer.render(scores, params[:id], "Recording").to_json
   end
 end

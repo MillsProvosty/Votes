@@ -11,8 +11,7 @@ class Vote < ActiveRecord::Base
 
     upvotes = relevant_votes.where(rating: 1).count
     downvotes = relevant_votes.where(rating: -1).count
-    total_score = upvotes - downvotes
 
-    {upvotes: upvotes, downvotes: downvotes, total_score: total_score}
+    {upvotes: upvotes, downvotes: downvotes}
   end
 end

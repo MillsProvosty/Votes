@@ -14,10 +14,10 @@ describe "Vote Requests" do
 
     expect(last_response).to be_ok
 
-    ratings = JSON.parse(last_response.body, symbolize_name: true)
+    ratings = JSON.parse(last_response.body, symbolize_names: true)
 
-    expect(ratings["upvotes"]).to eq(1)
-    expect(ratings["downvotes"]).to eq(2)
-    expect(ratings["total_score"]).to eq(-1)
+    expect(ratings[:data][:attributes][:upvotes]).to eq(1)
+    expect(ratings[:data][:attributes][:downvotes]).to eq(2)
+    expect(ratings[:data][:attributes][:total_score]).to eq(-1)
   end
 end
