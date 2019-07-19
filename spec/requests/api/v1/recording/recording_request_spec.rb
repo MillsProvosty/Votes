@@ -1,7 +1,7 @@
 require "./spec/spec_helper"
 
 describe "Vote Requests" do
-  it "Gets a specific recording by id" do
+  it "Returns the upvotes, downvotes and total score for a specific recording by id" do
 
     Vote.create(votable_id: 1, votable_type: "Recording", rating: -1, user_token: "12049oOwjhsfe")
     Vote.create(votable_id: 1, votable_type: "Recording", rating: 1, user_token: "348205wjgkdafe")
