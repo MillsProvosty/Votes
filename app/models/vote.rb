@@ -14,6 +14,6 @@ class Vote < ActiveRecord::Base
   end
 
   def self.relevant_votes(id, votable_type)
-    self.where(votable_type: "Recording", votable_id: id)
+    self.where(votable_type: votable_type, votable_id: id)
   end
 end
