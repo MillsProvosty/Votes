@@ -9,7 +9,7 @@ describe "Vote Requests" do
     Vote.create(votable_id: 1, votable_type: "Recording", rating: -1, user_token: "34jwer2orwjgkdafe")
     Vote.create(votable_id: 22, votable_type: "Landmark", rating: -1, user_token: "3482adfjq3r8fe")
 
-    get '/api/v1/landmarks/22/score'
+    get '/api/v1/Landmark/22/score'
 
     expect(last_response).to be_ok
 
