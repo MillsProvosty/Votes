@@ -11,4 +11,9 @@ class VotesApp < Sinatra::Base
     scores = Vote.score_for_id_and_type(params[:id], "Landmark")
     VoteSerializer.render(scores, params[:id], "Landmark").to_json
   end
+
+  post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/:rating' do
+    Vote.create_vote(params).to_json
+  end
+
 end
