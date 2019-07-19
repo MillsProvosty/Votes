@@ -1,13 +1,13 @@
 require "./spec/spec_helper"
 
 describe "Vote Requests" do
-  it "Returns the upvotes, downvotes and total score for a specific landmark by id" do 
+  it "Returns the upvotes, downvotes and total score for a specific landmark by id" do
 
-    Landmark.create(votable_id: 0, votable_type: "Landmakr", rating: -1, user_token: "12049oOwjhsfe")
-    Landmark.create(votable_id: 0, votable_type: "Landmakr", rating: 1, user_token: "348205wjgkdafe")
-    Landmark.create(votable_id: 0, votable_type: "Landmakr", rating: 1, user_token: "348205wjgkdafe")
+    Landmark.create(votable_id: 22, votable_type: "Landmakr", rating: -1, user_token: "12049oOwjhsfe")
+    Landmark.create(votable_id: 22, votable_type: "Landmakr", rating: 1, user_token: "348205wjgkdafe")
+    Landmark.create(votable_id: 3, votable_type: "Landmakr", rating: 1, user_token: "348205wjgkdafe")
     Landmark.create(votable_id: 1, votable_type: "Recording", rating: -1, user_token: "34jwer2orwjgkdafe")
-    Landmark.create(votable_id: 0, votable_type: "Landmakr", rating: -1, user_token: "3482adfjq3r8fe")
+    Landmark.create(votable_id: 22, votable_type: "Landmakr", rating: -1, user_token: "3482adfjq3r8fe")
 
     get '/api/v1/landmarks/1/score'
 
