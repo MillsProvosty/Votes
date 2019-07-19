@@ -1,5 +1,4 @@
 require "./spec/spec_helper"
-# require "./app/controllers/application_controller"
 
 describe "Vote Requests" do
   it "Gets a specific recording by id" do
