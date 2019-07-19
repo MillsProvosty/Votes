@@ -1,6 +1,6 @@
 require "./spec/spec_helper"
 
-describe "Create Vote" do
+describe "Create Recording Vote" do
   it "Creates a vote for a recording, with an id, and changes total score" do
     votable_id = 60
     votable_type = "Recording"
