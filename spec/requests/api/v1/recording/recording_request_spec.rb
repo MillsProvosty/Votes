@@ -3,11 +3,11 @@ require "./spec/spec_helper"
 describe "Vote Requests" do
   it "Gets a specific recording by id" do
 
-    @vote1 = Vote.create(votable_id: 1, votable_type: "Recording", rating: -1, user_token: "12049oOwjhsfe")
-    @vote2 = Vote.create(votable_id: 1, votable_type: "Recording", rating: 1, user_token: "348205wjgkdafe")
-    @vote3 = Vote.create(votable_id: 2, votable_type: "Recording", rating: 1, user_token: "348205wjgkdafe")
-    @vote4 = Vote.create(votable_id: 1, votable_type: "Landmark", rating: -1, user_token: "34jwer2orwjgkdafe")
-    @vote5 = Vote.create(votable_id: 1, votable_type: "Recording", rating: -1, user_token: "3482adfjq3r8fe")
+    Vote.create(votable_id: 1, votable_type: "Recording", rating: -1, user_token: "12049oOwjhsfe")
+    Vote.create(votable_id: 1, votable_type: "Recording", rating: 1, user_token: "348205wjgkdafe")
+    Vote.create(votable_id: 2, votable_type: "Recording", rating: 1, user_token: "348205wjgkdafe")
+    Vote.create(votable_id: 1, votable_type: "Landmark", rating: -1, user_token: "34jwer2orwjgkdafe")
+    Vote.create(votable_id: 1, votable_type: "Recording", rating: -1, user_token: "3482adfjq3r8fe")
 
     get '/api/v1/recordings/1/score'
 
