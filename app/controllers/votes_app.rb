@@ -6,9 +6,7 @@ class VotesApp < Sinatra::Base
     VoteSerializer.render(scores, params).to_json
   end
 
-
   post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/:rating' do
     Vote.create_vote(params).to_json
   end
-
 end
