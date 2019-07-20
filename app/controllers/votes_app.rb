@@ -9,4 +9,8 @@ class VotesApp < Sinatra::Base
   post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/:rating' do
     Vote.create_vote(params).to_json
   end
+
+  get '/api/v1/:votable_type/:votable_id/update_vote/:id/:user_token/:rating' do
+    Vote.update_vote(params[:id], params[:rating]).to_json
+  end
 end
