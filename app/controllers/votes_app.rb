@@ -11,6 +11,6 @@ class VotesApp < Sinatra::Base
   end
 
   get '/api/v1/:votable_type/:votable_id/update_vote/:id/:user_token/:rating' do
-    Vote.update_vote(params[:id]).to_json
+    Vote.update_vote(params[:id], params[:rating]).to_json
   end
 end

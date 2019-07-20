@@ -6,8 +6,6 @@ class Vote < ActiveRecord::Base
 
   enum votable_type: ["Landmark", "Recording"]
 
-
-
   def self.create_vote(attributes)
     new_vote = Vote.create(attributes)
     new_vote.save
@@ -23,5 +21,12 @@ class Vote < ActiveRecord::Base
 
   def self.relevant_votes(votable_id, votable_type)
     self.where(votable_type: votable_type, votable_id: votable_id)
+  end
+
+  def self.update_vote(vote_id, rating)
+    vote = Vote.find(vote_id)
+    vote[:rating] = rating
+    vote.save
+    return vote
   end
 end

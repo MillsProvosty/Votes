@@ -33,8 +33,14 @@ describe "Allows a user to update a vote" do
 
     vote = JSON.parse(last_response.body, symbolize_names: true)
 
-    expect(ratings[:data][:attributes][:upvotes]).to eq(12)
+    expect(vote[:rating]).to eq(-1)
+
+    get '/api/v1/Recording/60/score'
+
+    ratings = JSON.parse(last_response.body, symbolize_names: true)
+
+    expect(ratings[:data][:attributes][:upvotes]).to eq(11)
     expect(ratings[:data][:attributes][:downvotes]).to eq(2)
-    expect(ratings[:data][:attributes][:total_score]).to eq(10)
+    expect(ratings[:data][:attributes][:total_score]).to eq(9)
   end
 end
