@@ -9,6 +9,8 @@ source 'https://rubygems.org'
   gem 'fast_jsonapi'
   gem 'factory_bot_rails'
   gem 'figaro'
+  gem 'thin'
+  gem 'require_all'
 
   group :development, :test do
     gem 'shotgun'
