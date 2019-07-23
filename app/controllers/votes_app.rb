@@ -8,10 +8,12 @@ class VotesApp < Sinatra::Base
   end
 
   post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/:rating' do
-    Vote.create_vote(params).to_json
+    Vote.create_vote(params)
+    json {message: "It booped the bop."}
   end
 
   get '/api/v1/:votable_type/:votable_id/update_vote/:id/:user_token/:rating' do
-    Vote.update_vote(params[:id], params[:rating]).to_json
+    Vote.update_vote(params[:id], params[:rating])
+    json {message: "It bopped the boop."}
   end
 end
