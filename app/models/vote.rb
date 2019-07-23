@@ -4,7 +4,7 @@ class Vote < ActiveRecord::Base
                         :rating,
                         :user_token
 
-  enum votable_type: ["Landmark", "Recording"]
+  enum votable_type: ["landmark", "recording"]
 
   def self.create_vote(attributes)
     new_vote = Vote.create(attributes)
