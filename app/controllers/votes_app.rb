@@ -4,16 +4,17 @@ class VotesApp < Sinatra::Base
   get '/api/v1/:votable_type/:votable_id/score' do
     scores = Vote.score_for_id_and_type(params)
 
-    json VoteSerializer.render(scores, params)
+    json ScoreSerializer.render(scores, params)
   end
 
   post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/:rating' do
-    Vote.create_vote(params)
-    json {message: "It booped the bop."}
+    vote = Vote.create_vote(params)
+    json VoteSerializer.new(vote)
   end
 
   get '/api/v1/:votable_type/:votable_id/update_vote/:id/:user_token/:rating' do
-    Vote.update_vote(params[:id], params[:rating])
-    json {message: "It bopped the boop."}
+    updated_vote = Vote.update_vote(params[:id], params[:rating])
+
+    json VoteSerializer.new(updated_vote)
   end
 end
