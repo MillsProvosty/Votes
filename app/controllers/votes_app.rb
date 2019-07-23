@@ -1,3 +1,7 @@
+require 'sinatra/base'
+require 'sinatra/activerecord'
+require 'sinatra/contrib'
+
 class VotesApp < Sinatra::Base
   set :root, File.expand_path("..",__dir__)
 
