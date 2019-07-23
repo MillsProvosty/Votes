@@ -1,9 +1,3 @@
-require 'sinatra'
-require 'sinatra/base'
-# require_relative '../models/vote'
-require 'sinatra/contrib'
-require "sinatra/json"
-
 class VotesApp < Sinatra::Base
   set :root, File.expand_path("..",__dir__)
 
