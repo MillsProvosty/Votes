@@ -29,9 +29,7 @@ describe "Create landmark Vote" do
 
     expect(last_response).to be_ok
     
-
     vote = JSON.parse(last_response.body, symbolize_names: true)
-
 
     expect(vote[:data][:attributes][:votable_id]).to eq(25)
     expect(vote[:data][:attributes][:rating]).to eq(-1)
