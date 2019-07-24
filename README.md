@@ -5,6 +5,8 @@ rake db:migrate
 
 RACK_ENV=test rake db:migrate
 
+heroku rake db:migrate
+
 
 
 ### IMPORTANT! ###

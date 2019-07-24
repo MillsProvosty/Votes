@@ -14,11 +14,16 @@ class VotesApp < Sinatra::Base
   post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/:rating' do
     vote = Vote.create_vote(params)
     json VoteSerializer.new(vote)
+
+    scores = Vote.score_for_id_and_type(params)
+    final_score = scores[:upvotes] - scores[:downvotes]
   end
 
   get '/api/v1/:votable_type/:votable_id/update_vote/:id/:user_token/:rating' do
     updated_vote = Vote.update_vote(params[:id], params[:rating])
 
     json VoteSerializer.new(updated_vote)
+    scores = Vote.score_for_id_and_type(params)
+    final_score = scores[:upvotes] - scores[:downvotes]
   end
 end
