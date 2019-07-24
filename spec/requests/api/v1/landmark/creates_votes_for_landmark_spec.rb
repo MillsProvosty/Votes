@@ -28,10 +28,11 @@ describe "Create landmark Vote" do
     post '/api/v1/landmark/25/create_vote/19384uksjehf/-1'
 
     expect(last_response).to be_ok
+    
 
     vote = JSON.parse(last_response.body, symbolize_names: true)
 
-  
+
     expect(vote[:data][:attributes][:votable_id]).to eq(25)
     expect(vote[:data][:attributes][:rating]).to eq(-1)
     expect(vote[:data][:attributes][:user_token]).to eq("19384uksjehf")

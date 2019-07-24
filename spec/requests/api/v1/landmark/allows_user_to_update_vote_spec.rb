@@ -32,7 +32,6 @@ describe "Allows a user to update a vote" do
     expect(last_response).to be_ok
 
     vote = JSON.parse(last_response.body, symbolize_names: true)
-
     expect(vote[:data][:attributes][:rating]).to eq(-1)
 
     get '/api/v1/landmark/25/score'
