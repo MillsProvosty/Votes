@@ -16,7 +16,7 @@ describe "User can only vote once" do
     Vote.create(votable_id: 94, votable_type: "recording", rating: -1, user_token: "12345")
 
 
-    post '/api/v1/recording/22/create_vote/12345/1'
+    post '/api/v1/recording/22/create_vote/12345/-1'
 
     get '/api/v1/recording/22/score'
 
@@ -25,7 +25,7 @@ describe "User can only vote once" do
     update = JSON.parse(last_response.body, symbolize_names: true)
 
     expect(update[:data][:attributes][:upvotes]).to eq(3)
-    expect(update[:data][:attributes][:downvotes]).to eq(2)
-    expect(update[:data][:attributes][:total_score]).to eq(1)
+    expect(update[:data][:attributes][:downvotes]).to eq(3)
+    expect(update[:data][:attributes][:total_score]).to eq(0)
   end
 end

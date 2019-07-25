@@ -38,9 +38,9 @@ class Vote < ActiveRecord::Base
     if vote_id.count == 0
       Vote.create(params)
     else
-      id = vote_id.first[:id]
-      rating = 0
-      self.update_vote(id, rating)
+      old_vote_id = vote_id.first[:id]
+      new_rating = params[:rating]
+      self.update_vote(old_vote_id, new_rating)
     end
   end
 end
