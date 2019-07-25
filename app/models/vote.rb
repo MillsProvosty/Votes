@@ -7,7 +7,22 @@ class Vote < ActiveRecord::Base
   enum votable_type: ["landmark", "recording"]
 
   def self.check_previous(params)
-    vote_exists?(params)
+    votable_id = params["votable_id"]
+    user_token = params["user_token"]
+    votable_type = params["votable_type"]
+
+    # new_rating = params[:rating]
+    # vote = self.find_or_create_by!(votable_id: votable_id, votable_type: votable_type, user_token: user_token)
+    # vote.update!(rating: new_rating)
+    vote_id = select("votes.*").where(user_token: user_token, votable_id: votable_id, votable_type: votable_type)
+
+    if vote_id.count == 0
+      Vote.create(params)
+    else
+      old_vote_id = vote_id.first[:id]
+      new_rating = params[:rating]
+      self.update_vote(old_vote_id, new_rating)
+    end
   end
 
   def self.score_for_id_and_type(attributes)
@@ -26,20 +41,5 @@ class Vote < ActiveRecord::Base
     vote[:rating] = rating
     vote.save
     return vote
-  end
-
-  def self.vote_exists?(params)
-    object_id = params["votable_id"]
-    user = params["user_token"]
-    type = params["votable_type"]
-
-    vote_id = select("votes.*").where(user_token: user, votable_id: object_id, votable_type: type)
-    if vote_id.count == 0
-      Vote.create(params)
-    else
-      old_vote_id = vote_id.first[:id]
-      new_rating = params[:rating]
-      self.update_vote(old_vote_id, new_rating)
-    end
   end
 end
