@@ -12,7 +12,7 @@ class VotesApp < Sinatra::Base
   end
 
   post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/:rating' do
-    vote = Vote.create(params)
+    vote = Vote.check_previous(params)
 
     json VoteSerializer.new(vote)
   end

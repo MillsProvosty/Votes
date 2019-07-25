@@ -6,6 +6,25 @@ class Vote < ActiveRecord::Base
 
   enum votable_type: ["landmark", "recording"]
 
+  def self.check_previous(params)
+    votable_id = params["votable_id"]
+    user_token = params["user_token"]
+    votable_type = params["votable_type"]
+
+    # new_rating = params[:rating]
+    # vote = self.find_or_create_by!(votable_id: votable_id, votable_type: votable_type, user_token: user_token)
+    # vote.update!(rating: new_rating)
+    vote_id = select("votes.*").where(user_token: user_token, votable_id: votable_id, votable_type: votable_type)
+
+    if vote_id.count == 0
+      Vote.create(params)
+    else
+      old_vote_id = vote_id.first[:id]
+      new_rating = params[:rating]
+      self.update_vote(old_vote_id, new_rating)
+    end
+  end
+
   def self.score_for_id_and_type(attributes)
     upvotes = relevant_votes(attributes[:votable_id], attributes[:votable_type]).where(rating: 1).count
     downvotes = relevant_votes(attributes[:votable_id], attributes[:votable_type]).where(rating: -1).count
