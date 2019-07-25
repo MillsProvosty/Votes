@@ -10,7 +10,6 @@ class Vote < ActiveRecord::Base
     vote_exists?(params)
   end
 
-
   def self.score_for_id_and_type(attributes)
     upvotes = relevant_votes(attributes[:votable_id], attributes[:votable_type]).where(rating: 1).count
     downvotes = relevant_votes(attributes[:votable_id], attributes[:votable_type]).where(rating: -1).count
