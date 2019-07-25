@@ -1,0 +1,31 @@
+<html>
+<head>
+  <title>Vote App</title>
+  <link rel="stylesheet" href="/main.css" type="text/css" />
+
+</head>
+<body>
+  <nav>
+    <ul>
+      <li> <a href="/">Home</a> </li>
+    </ul>
+  </nav>
+    <div class="container">
+    <h1>API Documentation</h1>
+    <h2>Endpoints:</h2>
+    <ol>
+      <li>post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/'</li>
+        <ul><br>
+          <li>This endpoint allows users to create a vote.</li>
+        </ul><br>
+        <ul>get '/api/v1/:votable_type/:votable_id/score'<br>
+          <li>This endpoint allows a the app to display a score for a landmark or recording.</li>
+        </ul><br>
+        <li>get '/api/v1/:votable_type/:votable_id/update_vote/:id/:user_token/:rating' </li>
+        <ul><br>
+          <li>This endpoint allows a user to update their vote, but not vote more than once.</li>
+        </ul><br>
+    </ol>
+  </div>
+
+</html>
