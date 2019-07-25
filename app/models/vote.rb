@@ -6,12 +6,6 @@ class Vote < ActiveRecord::Base
 
   enum votable_type: ["landmark", "recording"]
 
-  def self.create_vote(attributes)
-    new_vote = Vote.create(attributes)
-    new_vote.save
-    return new_vote
-  end
-
   def self.score_for_id_and_type(attributes)
     upvotes = relevant_votes(attributes[:votable_id], attributes[:votable_type]).where(rating: 1).count
     downvotes = relevant_votes(attributes[:votable_id], attributes[:votable_type]).where(rating: -1).count

@@ -35,6 +35,8 @@ describe "Create recording Vote" do
     expect(vote[:data][:attributes][:rating]).to eq(-1)
     expect(vote[:data][:attributes][:user_token]).to eq("19384uksjehf")
     expect(vote[:data][:attributes][:votable_type]).to eq("recording")
+
+    expect(Vote.last.rating).to eq(-1)
     get '/api/v1/recording/60/score'
 
     expect(last_response).to be_ok
