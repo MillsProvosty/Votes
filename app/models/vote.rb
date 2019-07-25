@@ -5,7 +5,14 @@ class Vote < ActiveRecord::Base
                         :user_token
 
   enum votable_type: ["landmark", "recording"]
-  
+
+  def self.check_previous(params)
+    
+    id = params["votable_id"]
+    user = params["user_token"]
+    type = params["votable_type"]
+  end
+
   def self.create_vote(attributes)
     new_vote = Vote.create(attributes)
     new_vote.save
@@ -29,5 +36,9 @@ class Vote < ActiveRecord::Base
     vote[:rating] = rating
     vote.save
     return vote
+  end
+
+  def vote_exists?
+    Vote.where(user_token: user, votable_id: id, votable_type: type)
   end
 end
