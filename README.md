@@ -11,12 +11,18 @@ Fast JSON API
 ### Getting Started/Dependencies ###
 run the following:
 
-git clone git@github.com:MillsProvosty/Votes.git
+git clone
 bundle install
 bundle exec figaro install
 bundle exec rake db:{create,migrate,seed}
 RACK_ENV=test rake db:migrate
 bundle
+
+In order to get into Heroku's databse, run:
+heroku psql
+
+In order to add migrations to database, run:
+rake db:create_migration NAME=create_thing
 
 ### API Endpoints ###
 To create vote:

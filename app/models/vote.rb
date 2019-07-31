@@ -4,7 +4,7 @@ class Vote < ActiveRecord::Base
                         :rating,
                         :user_token
 
-  enum votable_type: ["landmark", "recording"]
+  enum votable_type: ["landmark", "recording", "tour"]
 
   def self.check_previous(params)
     votable_id = params["votable_id"]
