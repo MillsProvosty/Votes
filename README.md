@@ -1,6 +1,6 @@
 ### Description ###
 Vote_app is a stand alone Sinatra application built to support the Oddio Rails App.
-Its primary use is to act as a database for Oddio, storing, updating and retrieving votes and scores for landmarks and recordings.
+Its primary use is to act as a database for Oddio, storing, updating and retrieving votes and scores for landmarks, recordings and tours.
 
 ### Build Using ###
 Sinatra 2.0.5
