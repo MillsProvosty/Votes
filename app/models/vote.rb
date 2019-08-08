@@ -7,6 +7,7 @@ class Vote < ActiveRecord::Base
   enum votable_type: ["landmark", "recording", "tour"]
 
   def self.check_previous(params)
+    params.delete('api_key')
     votable_id = params["votable_id"]
     user_token = params["user_token"]
     votable_type = params["votable_type"]
