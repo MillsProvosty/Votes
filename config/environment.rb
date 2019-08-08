@@ -15,6 +15,11 @@ Dir.glob(File.join(APP_ROOT, 'app', 'serializers', '*.rb')).each { |file| requir
 # require database configurations
 require File.join(APP_ROOT, 'config', 'database')
 
+Figaro.application = Figaro::Application.new(
+  path: File.expand_path("config/application.yml")
+)
+Figaro.load
+
 class VotesApp < Sinatra::Base
   set :method_override, true
   set :root, APP_ROOT
