@@ -27,7 +27,7 @@ describe "Allows a user to update a vote" do
     expect(ratings[:data][:attributes][:downvotes]).to eq(1)
     expect(ratings[:data][:attributes][:total_score]).to eq(11)
 
-    get "/api/v1/tour/78/update_vote/#{id}/0987asdf/-1"
+    get "/api/v1/tour/78/update_vote/#{id}/0987asdf/-1?api_key=#{ENV['VOTES_API_KEY']}"
 
     expect(last_response).to be_ok
 

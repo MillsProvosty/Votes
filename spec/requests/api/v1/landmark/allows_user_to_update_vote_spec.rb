@@ -2,7 +2,6 @@ require "./spec/spec_helper"
 
 describe "Allows a user to update a vote" do
   it "and this changes total score" do
-
     Vote.create(votable_id: 25, votable_type: "landmark", rating: -1, user_token: "12049oOwjhsfe")
     Vote.create(votable_id: 25, votable_type: "landmark", rating: -1, user_token: "348205whfna23afe")
     Vote.create(votable_id: 25, votable_type: "landmark", rating: -1, user_token: "348205okadefe")
@@ -27,7 +26,7 @@ describe "Allows a user to update a vote" do
     expect(ratings[:data][:attributes][:downvotes]).to eq(7)
     expect(ratings[:data][:attributes][:total_score]).to eq(-1)
 
-    get "/api/v1/landmark/25/update_vote/#{id}/0987asdf/-1"
+    get "/api/v1/landmark/25/update_vote/#{id}/0987asdf/-1?api_key=#{ENV['VOTES_API_KEY']}"
 
     expect(last_response).to be_ok
 
