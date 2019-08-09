@@ -25,7 +25,7 @@ describe "Create landmark Vote" do
     expect(ratings[:data][:attributes][:downvotes]).to eq(4)
     expect(ratings[:data][:attributes][:total_score]).to eq(4)
 
-    post '/api/v1/landmark/25/create_vote/19384uksjehf/-1'
+    post "/api/v1/landmark/25/create_vote/19384uksjehf/-1?api_key=#{ENV['VOTES_API_KEY']}"
 
     expect(last_response).to be_ok
     
@@ -45,5 +45,24 @@ describe "Create landmark Vote" do
     expect(ratings[:data][:attributes][:upvotes]).to eq(8)
     expect(ratings[:data][:attributes][:downvotes]).to eq(5)
     expect(ratings[:data][:attributes][:total_score]).to eq(3)
+  end
+
+  it 'will not allow vote to be created without valid API key' do
+    votable_type = 'landmark'
+    votable_id = 25
+
+    expect(Vote.relevant_votes(votable_id, votable_type).count).to eq(0)
+
+    post "/api/v1/#{votable_type}/#{votable_id}/create_vote/1234/-1?api_key=#{ENV['VOTES_API_KEY']}"
+    expect(last_response.status).to eq(200)
+    expect(Vote.relevant_votes(votable_id, votable_type).count).to eq(1)
+
+    post "/api/v1/#{votable_type}/#{votable_id}/create_vote/5678/-1?api_key=not_a_real_api_key"
+    expect(last_response.status).to eq(401)
+    expect(Vote.relevant_votes(votable_id, votable_type).count).to eq(1)
+    
+    post "/api/v1/#{votable_type}/#{votable_id}/create_vote/9101112/-1"
+    expect(last_response.status).to eq(401)
+    expect(Vote.relevant_votes(votable_id, votable_type).count).to eq(1)
   end
 end

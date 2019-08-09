@@ -2,7 +2,6 @@ require "./spec/spec_helper"
 
 describe "User can only vote once" do
   it "then update is called" do
-
     Vote.create(votable_id: 22, votable_type: "recording", rating: 1, user_token: "12345")
 
     Vote.create(votable_id: 22, votable_type: "recording", rating: 1, user_token: "9834u")
@@ -25,8 +24,7 @@ describe "User can only vote once" do
     expect(original_vote[:data][:attributes][:downvotes]).to eq(2)
     expect(original_vote[:data][:attributes][:total_score]).to eq(2)
 
-    post '/api/v1/recording/22/create_vote/12345/-1'
-
+    post "/api/v1/recording/22/create_vote/12345/-1?api_key=#{ENV['VOTES_API_KEY']}"
 
     get '/api/v1/recording/22/score'
 

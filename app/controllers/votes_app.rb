@@ -12,14 +12,28 @@ class VotesApp < Sinatra::Base
   end
 
   post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/:rating' do
-    vote = Vote.check_previous(params)
+    if api_key_valid?
+      vote = Vote.check_previous(params)
 
-    json VoteSerializer.new(vote)
+      json VoteSerializer.new(vote)
+    else
+      halt 401
+    end
   end
 
   get '/api/v1/:votable_type/:votable_id/update_vote/:id/:user_token/:rating' do
-    updated_vote = Vote.update_vote(params[:id], params[:rating])
+    if api_key_valid?
+      updated_vote = Vote.update_vote(params[:id], params[:rating])
 
-    json VoteSerializer.new(updated_vote)
+      json VoteSerializer.new(updated_vote)
+    else
+      halt 401
+    end
+  end
+
+  private
+
+  def api_key_valid?
+    ENV['VOTES_API_KEY'] && params[:api_key] == ENV['VOTES_API_KEY']
   end
 end
