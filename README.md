@@ -27,12 +27,14 @@ rake db:create_migration NAME=create_thing
 ### API Endpoints ###
 To create vote:
 post '/api/v1/:votable_type/:votable_id/create_vote/:user_token/'
+This request requires a valid `api_key` parameter.
 
 To retrieve score:
 get '/api/v1/:votable_type/:votable_id/score'
 
 To update a vote:
 get '/api/v1/:votable_type/:votable_id/update_vote/:id/:user_token/:rating'
+This request requires a valid `api_key` parameter.
 
 
 ### IMPORTANT! ###
