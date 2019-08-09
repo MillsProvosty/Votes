@@ -1,4 +1,2 @@
-config/application.yml
-
-# Ignore application configuration
+# Ignore figaro list of secrets
 /config/application.yml
