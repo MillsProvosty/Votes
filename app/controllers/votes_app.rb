@@ -31,6 +31,10 @@ class VotesApp < Sinatra::Base
     end
   end
 
+ get '/api/v1/sort_by_rating/:votable_type' do
+   json Vote.sort_by_rating(params[:votable_type], params[:ids])
+ end
+
   private
 
   def api_key_valid?
