@@ -45,22 +45,27 @@ class Vote < ActiveRecord::Base
   end
 
   def self.sort_by_rating(votable_type, array_of_ids)
+    self.create_zero_score(votable_type, array_of_ids)
+    
+    hash = {}
+    self.sorted_collection(votable_type, array_of_ids).each do |votable_object|
+      hash[votable_object.votable_id] = votable_object.total_score
+    end
+    hash
+  end
+
+  def self.create_zero_score(votable_type, array_of_ids)
     array_of_ids.each do |id|
       unless self.find_by(id: id)
         self.create!(votable_id: id, votable_type: votable_type, rating: 0, user_token: "blar")
       end
     end
+  end
 
-    sorted_collection =
+  def self.sorted_collection(votable_type, array_of_ids)
     self.where(votable_type: votable_type, votable_id: array_of_ids)
       .select("sum(rating) as total_score", :votable_id)
       .group(:votable_id)
       .order(total_score: :desc)
-
-    hash = {}
-    sorted_collection.each do |votable_object|
-      hash[votable_object.votable_id] = votable_object.total_score
-    end
-    hash
   end
 end
